@@ -1,0 +1,29 @@
+class Solution:
+    def removeComments(self, source: List[str]) -> List[str]:
+        closed = False
+        res = []
+        temp = ""
+        
+        for strs in source:
+            i = 0
+            if not closed:
+                temp = ""
+            while i < len(strs):
+                if not closed and i + 1 < len(strs) and strs[i:i+2] == "/*":
+                    closed = True
+                    i += 2
+                elif closed and  i + 1 < len(strs) and strs[i:i+2] == "*/":
+                    closed  = False
+                    i += 2
+                elif not closed and i + 1 < len(strs) and strs[i:i+2] == "//":
+                    break
+                elif not closed:
+                    temp += strs[i]
+                    i += 1
+                else:
+                    i += 1
+            
+            if not closed and temp:
+                res.append(temp)
+
+        return res
