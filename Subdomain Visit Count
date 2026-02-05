@@ -1,0 +1,21 @@
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        domains = defaultdict(int)
+        for i in cpdomains:
+            vist, domain = i.split()
+            domains[domain] += int(vist)
+            d = domain.split(".")
+            domains[d[-1]] += int(vist)
+            if len(d) == 3:
+                new_domain = d[1] + "." + d[2]
+                domains[new_domain] += int(vist)
+            
+            res = []
+
+        for domain, vist in domains.items():
+            res.append(str(vist) + " " + domain)
+
+
+        return res
+
+
