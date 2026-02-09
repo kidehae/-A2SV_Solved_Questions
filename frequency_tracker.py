@@ -1,0 +1,27 @@
+class FrequencyTracker:
+
+    def __init__(self):
+        self.count = Counter()     
+        self.freq = Counter()      
+
+    def add(self, number: int) -> None:
+        old = self.count[number]
+        if old > 0:
+            self.freq[old] -= 1
+        self.count[number] += 1
+        self.freq[old + 1] += 1
+
+    def deleteOne(self, number: int) -> None:
+        old = self.count[number]
+        if old == 0:
+            return
+        self.freq[old] -= 1
+        if old == 1:
+            del self.count[number]
+        else:
+            self.count[number] -= 1
+            self.freq[old - 1] += 1
+
+    def hasFrequency(self, frequency: int) -> bool:
+        return self.freq[frequency] > 0
+
