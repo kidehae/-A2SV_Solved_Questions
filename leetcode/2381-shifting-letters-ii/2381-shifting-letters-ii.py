@@ -19,7 +19,7 @@ class Solution:
         result = []
 
         for i in range(n):
-            shift = diff[i] % 26
+            shift = diff[i]
             new_char = (ord(s[i]) - ord('a') + shift) % 26
             result.append(chr(new_char + ord('a')))
 
