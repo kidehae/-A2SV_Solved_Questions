@@ -1,24 +1,20 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
 
-        res = []
 
-        def backtrack(num, path):
+        def combine(num, path):
             if len(path) == k:
                 res.append(path[:])
                 return
 
-            for i in range(num, n + 1):
+            for i in range (num, n + 1):
                 path.append(i)
-                backtrack(i + 1, path)
+                combine(i + 1, path)
                 path.pop()
 
-        backtrack(1,[])
+        res = []
+        combine(1,[])
         return res
 
-        
-
-
-        
 
         
